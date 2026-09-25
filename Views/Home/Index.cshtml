@@ -1,16 +1,35 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model MyMvcApp.Models.Book
+
+@{
+    ViewData["Title"] = "Главная";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Обо мне</h1>
-    
-    <div class="card mx-auto mt-4" style="max-width: 500px; text-align: left; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-        <h3 class="text-center mb-4">Моя информация</h3>
+    <h1 class="display-4">Добавить книгу</h1>
+
+    <!-- Форма ввода -->
+    <form asp-action="Index" method="post" class="mx-auto mt-4" style="max-width: 500px; text-align: left;">
         
-        <p><strong>ФИО:</strong> Ивлиев Вадим Серегеевич</p>
-        <p><strong>Группа:</strong> РПО-23</p>
-        <p><strong>Специальность:</strong> Разработка программного обеспечения</p>
-        <p><strong>Город:</strong> Тольятти</p>
-        <p><strong>Хобби:</strong> Играть в доту</p>
+        <div class="mb-3">
+            <label for="Title" class="form-label">Название книги:</label>
+            <input type="text" class="form-control" id="Title" name="Title" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="Author" class="form-label">Автор:</label>
+            <input type="text" class="form-control" id="Author" name="Author" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+
+    <!-- Вывод данных (появляется после отправки) -->
+    @if (Model != null)
+    {
+        <div class="card mx-auto mt-5" style="max-width: 500px; text-align: left; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <h3 class="text-center mb-3">Введённая книга:</h3>
+            <p><strong>Название:</strong> @Model.Title</p>
+            <p><strong>Автор:</strong> @Model.Author</p>
+        </div>
+    }
 </div>
